@@ -1,7 +1,7 @@
 
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
-import 'package:al_darb_consulting_center/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:al_darb_consulting_center/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +14,7 @@ class RememberMeCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        BlocBuilder<LoginCubit, LoginState>(
+        BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             return Checkbox(
               checkColor: AppColors.backgroundSurface,
@@ -25,7 +25,7 @@ class RememberMeCheckbox extends StatelessWidget {
               ),
               value: state.rememberMe,
               onChanged: (value) {
-                context.read<LoginCubit>().toggleRememberMe(
+                context.read<AuthCubit>().toggleRememberMe(
                   value!,
                 );
               },

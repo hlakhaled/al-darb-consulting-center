@@ -1,7 +1,7 @@
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:al_darb_consulting_center/features/auth/data/models/auth_model.dart';
-import 'package:al_darb_consulting_center/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:al_darb_consulting_center/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class CustomTextFormFieldWithLabel extends StatelessWidget {
       children: [
         Text(authModel.title, style: AppStyles.style14SemiBold),
         const SizedBox(height: 8),
-        BlocBuilder<LoginCubit, LoginState>(
+        BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             return TextFormField(
               obscureText: authModel.isPassword && !state.isPasswordVisible,
@@ -39,9 +39,20 @@ class CustomTextFormFieldWithLabel extends StatelessWidget {
                 suffixIcon: authModel.isPassword
                     ? IconButton(
                         onPressed: () {
-                          context.read<LoginCubit>().togglePasswordVisibility();
+                          authModel.isConfirmPassword
+                              ? context
+                                    .read<AuthCubit>()
+                                    .toggleConfirmPasswordVisibility()
+                              : context
+                                    .read<AuthCubit>()
+                                    .togglePasswordVisibility();
                         },
                         icon: Icon(
+                          authModel.isConfirmPassword
+                              ? state.isConfirmPasswordVisible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined
+                              :
                           state.isPasswordVisible
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,

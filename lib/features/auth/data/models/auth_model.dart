@@ -1,5 +1,10 @@
 class AuthModel {
   final String title;
   final bool isPassword;
-  const AuthModel({required this.title, required this.isPassword});
+  final bool isConfirmPassword;
+  const AuthModel({
+    required this.title,
+    required this.isPassword,
+    this.isConfirmPassword = false,
+  });
 }

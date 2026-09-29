@@ -17,28 +17,32 @@ class SecureAccountView extends StatefulWidget {
 
 class _SecureAccountViewState extends State<SecureAccountView> {
   final List<AuthModel> loginFields = const [
-    AuthModel(title: "الاسم الكامل", isPassword: false),
-    AuthModel(title: "رقم الهاتف", isPassword: false),
-    AuthModel(title: "العنوان", isPassword: false),
+    AuthModel(title: "البريد الإلكتروني", isPassword: false),
+    AuthModel(title: "كلمة المرور", isPassword: true),
+    AuthModel(
+      title: "تأكيد كلمة المرور",
+      isPassword: true,
+      isConfirmPassword: true,
+    ),
   ];
-  late TextEditingController fullNameController;
-  late TextEditingController phoneController;
-  late TextEditingController addressController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
 
   final formKey = GlobalKey<FormState>();
   @override
   initState() {
     super.initState();
-    fullNameController = TextEditingController();
-    phoneController = TextEditingController();
-    addressController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    fullNameController.dispose();
-    phoneController.dispose();
-    addressController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -59,7 +63,7 @@ class _SecureAccountViewState extends State<SecureAccountView> {
                     Text("تأمين الحساب", style: AppStyles.style20Bold),
                     const SizedBox(height: 8),
                     Text(
-                      "أدخل بياناتك لإنشاء حسابك",
+                      "أكمل بيانات الدخول لحماية حسابك وإتمام التسجيل.",
                       style: AppStyles.style12Regular.copyWith(
                         color: AppColors.textHighContrast,
                       ),
@@ -71,17 +75,17 @@ class _SecureAccountViewState extends State<SecureAccountView> {
                         children: [
                           CustomTextFormFieldWithLabel(
                             authModel: loginFields[0],
-                            controller: fullNameController,
+                            controller: emailController,
                           ),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWithLabel(
                             authModel: loginFields[1],
-                            controller: phoneController,
+                            controller: passwordController,
                           ),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWithLabel(
                             authModel: loginFields[2],
-                            controller: addressController,
+                            controller: confirmPasswordController,
                           ),
                         ],
                       ),
@@ -96,7 +100,7 @@ class _SecureAccountViewState extends State<SecureAccountView> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                      title: "التالي",
+                      title: "إنشاء الحساب",
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           // Perform login action
