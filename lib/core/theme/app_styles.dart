@@ -9,9 +9,20 @@ class AppStyles {
     color: AppColors.textSecondary,
   );
 
+  static final TextStyle style14SemiBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
   static final TextStyle style20SemiBold = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.textHighContrast,
+  );
+  static final TextStyle style20Bold = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
   );
 }
