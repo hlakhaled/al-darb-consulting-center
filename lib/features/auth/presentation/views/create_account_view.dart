@@ -1,3 +1,4 @@
+import 'package:al_darb_consulting_center/core/routes/app_router.dart';
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:al_darb_consulting_center/core/widgets/custom_button.dart';
@@ -7,6 +8,7 @@ import 'package:al_darb_consulting_center/features/auth/presentation/views/widge
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/custom_text_form_field_with_label.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/profile_image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateAccountView extends StatefulWidget {
   const CreateAccountView({super.key});
@@ -99,7 +101,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                       title: "التالي",
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          // Perform login action
+                          context.go(AppRouter.secureAccountView);
                         }
                       },
                     ),
@@ -108,7 +110,9 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                       authNavigationModel: AuthNavigationModel(
                         message: "لديك حساب بالفعل؟",
                         actionText: "تسجيل الدخول",
-                        onTap: () {},
+                        onTap: () {
+                          context.go(AppRouter.login);
+                        },
                       ),
                     ),
                     const SizedBox(height: 88),

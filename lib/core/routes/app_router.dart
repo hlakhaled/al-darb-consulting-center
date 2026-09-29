@@ -3,8 +3,8 @@ import 'package:al_darb_consulting_center/features/auth/presentation/views/forgo
 import 'package:al_darb_consulting_center/features/auth/presentation/views/login_view.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/create_account_view.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/secure_account_view.dart';
+import 'package:al_darb_consulting_center/features/splash/presentation/views/splash_view.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -12,16 +12,16 @@ class AppRouter {
   static const String login = "/loginView";
   static const String createAccountView = "/createAccountView";
 
-  static const String forgotPasswordView = "/";
-  // static const String splash = "/";
+  static const String forgotPasswordView = "/forgotPasswordView";
+  static const String splash = "/";
   final GoRouter goRouter = GoRouter(
     routes: [
-      // GoRoute(
-      //   path: splash,
-      //   builder: (context, state) {
-      //     return SplashView();
-      //   },
-      // ),
+      GoRoute(
+        path: splash,
+        builder: (context, state) {
+          return SplashView();
+        },
+      ),
       GoRoute(
         path: forgotPasswordView,
         builder: (context, state) {

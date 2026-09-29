@@ -1,6 +1,8 @@
 import 'package:al_darb_consulting_center/core/constants/assets.dart';
+import 'package:al_darb_consulting_center/core/routes/app_router.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -56,7 +58,11 @@ class _SplashViewState extends State<SplashView>
       ),
     );
 
-    _controller.forward();
+    _controller.forward().then((_) {
+      if (mounted) {
+        context.go(AppRouter.login);
+      }
+    });
   }
 
   @override
@@ -84,9 +90,7 @@ class _SplashViewState extends State<SplashView>
                   ),
                 ),
               ),
-
               const SizedBox(height: 16),
-
               FadeTransition(
                 opacity: _textFade,
                 child: SlideTransition(

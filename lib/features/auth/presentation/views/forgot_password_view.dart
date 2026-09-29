@@ -1,10 +1,12 @@
 import 'package:al_darb_consulting_center/core/constants/assets.dart';
+import 'package:al_darb_consulting_center/core/routes/app_router.dart';
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:al_darb_consulting_center/core/widgets/custom_button.dart';
 import 'package:al_darb_consulting_center/features/auth/data/models/auth_model.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/custom_text_form_field_with_label.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
@@ -95,7 +97,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         "العودة لتسجيل الدخول",
                         style: AppStyles.style14Bold,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go(AppRouter.login);
+                      },
                     ),
                     const SizedBox(height: 88),
                   ],

@@ -1,4 +1,5 @@
 import 'package:al_darb_consulting_center/core/constants/assets.dart';
+import 'package:al_darb_consulting_center/core/routes/app_router.dart';
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:al_darb_consulting_center/core/widgets/custom_button.dart';
@@ -8,6 +9,7 @@ import 'package:al_darb_consulting_center/features/auth/presentation/views/widge
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/custom_text_form_field_with_label.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/login_options_row.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -93,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                      title:  "تسجيل الدخول",
+                      title: "تسجيل الدخول",
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           // Perform login action
@@ -105,7 +107,9 @@ class _LoginViewState extends State<LoginView> {
                       authNavigationModel: AuthNavigationModel(
                         message: "ليس لديك حساب؟ ",
                         actionText: "إنشاء حساب جديد",
-                        onTap: () {},
+                        onTap: () {
+                          context.go(AppRouter.createAccountView);
+                        },
                       ),
                     ),
                     const SizedBox(height: 88),
