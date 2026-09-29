@@ -1,4 +1,3 @@
-import 'package:al_darb_consulting_center/core/constants/assets.dart';
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:al_darb_consulting_center/core/widgets/custom_button.dart';
@@ -6,35 +5,40 @@ import 'package:al_darb_consulting_center/features/auth/data/models/auth_model.d
 import 'package:al_darb_consulting_center/features/auth/data/models/auth_navigation_model.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/auth_navigation_text.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/custom_text_form_field_with_label.dart';
-import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/login_options_row.dart';
+import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/profile_image_picker.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignupViewState extends State<SignupView> {
   final List<AuthModel> loginFields = const [
-    AuthModel(title: "البريد الإلكتروني", isPassword: false),
-    AuthModel(title: "كلمة المرور", isPassword: true),
+    AuthModel(title: "الاسم الكامل", isPassword: false),
+    AuthModel(title: "رقم الهاتف", isPassword: false),
+    AuthModel(title: "العنوان", isPassword: false),
   ];
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late TextEditingController fullNameController;
+  late TextEditingController phoneController;
+  late TextEditingController addressController;
+
   final formKey = GlobalKey<FormState>();
   @override
   initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    fullNameController = TextEditingController();
+    phoneController = TextEditingController();
+    addressController = TextEditingController();
   }
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    fullNameController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
     super.dispose();
   }
 
@@ -50,16 +54,12 @@ class _LoginViewState extends State<LoginView> {
                 child: Column(
                   children: [
                     const SizedBox(height: 48),
-                    Image(
-                      image: AssetImage(Assets.assetsImagesLogo),
-                      width: 100,
-                      height: 100,
-                    ),
+                    const ProfileImagePicker(),
                     const SizedBox(height: 16),
-                    Text("تسجيل الدخول", style: AppStyles.style20Bold),
+                    Text("إنشاء حساب جديد", style: AppStyles.style20Bold),
                     const SizedBox(height: 8),
                     Text(
-                      "قم بتسجيل الدخول إلى حسابك",
+                      "أدخل بياناتك لإنشاء حسابك",
                       style: AppStyles.style12Regular.copyWith(
                         color: AppColors.textHighContrast,
                       ),
@@ -71,15 +71,18 @@ class _LoginViewState extends State<LoginView> {
                         children: [
                           CustomTextFormFieldWithLabel(
                             authModel: loginFields[0],
-                            controller: emailController,
+                            controller: fullNameController,
                           ),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWithLabel(
                             authModel: loginFields[1],
-                            controller: passwordController,
+                            controller: phoneController,
                           ),
                           const SizedBox(height: 16),
-                          const LoginOptionsRow(),
+                          CustomTextFormFieldWithLabel(
+                            authModel: loginFields[2],
+                            controller: addressController,
+                          ),
                         ],
                       ),
                     ),
@@ -93,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                      title:  "تسجيل الدخول",
+                      title: "التالي",
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           // Perform login action
@@ -103,8 +106,8 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(height: 16),
                     AuthNavigationText(
                       authNavigationModel: AuthNavigationModel(
-                        message: "ليس لديك حساب؟ ",
-                        actionText: "إنشاء حساب جديد",
+                        message: "لديك حساب بالفعل؟",
+                        actionText: "تسجيل الدخول",
                         onTap: () {},
                       ),
                     ),

@@ -3,8 +3,9 @@ import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({required this.onTap, super.key});
+  const CustomButton({required this.onTap, super.key, required this.title});
   final VoidCallback? onTap;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -16,11 +17,24 @@ class CustomButton extends StatelessWidget {
           color: AppColors.gradientPrimary,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          "تسجيل الدخول",
-          style: AppStyles.style16Bold,
-          textAlign: TextAlign.center,
-        ),
+        child: title == "التالي"
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: AppStyles.style16Bold,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(Icons.arrow_forward, color: AppColors.backgroundSurface),
+                ],
+              )
+            : Text(
+                title,
+                style: AppStyles.style16Bold,
+                textAlign: TextAlign.center,
+              ),
       ),
     );
   }
