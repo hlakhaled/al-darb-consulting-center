@@ -31,7 +31,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  flutter_localization: ^0.4.1
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
