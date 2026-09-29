@@ -1,8 +1,11 @@
 import 'package:al_darb_consulting_center/core/constants/assets.dart';
 import 'package:al_darb_consulting_center/core/theme/app_colors.dart';
 import 'package:al_darb_consulting_center/core/theme/app_styles.dart';
+import 'package:al_darb_consulting_center/core/widgets/custom_button.dart';
 import 'package:al_darb_consulting_center/features/auth/data/models/auth_model.dart';
+import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/auth_navigation_text.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/custom_text_form_field_with_label.dart';
+import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/login_options_row.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
@@ -17,26 +20,48 @@ class LoginView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              Image(
-                image: AssetImage(Assets.assetsImagesLogo),
-                width: 100,
-                height: 100,
-              ),
-              const SizedBox(height: 16),
-              Text("تسجيل الدخول", style: AppStyles.style20Bold),
-              const SizedBox(height: 8),
-              Text(
-                "قم بتسجيل الدخول إلى حسابك",
-                style: AppStyles.style12Regular.copyWith(
-                  color: AppColors.textHighContrast,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 48),
+                    Image(
+                      image: AssetImage(Assets.assetsImagesLogo),
+                      width: 100,
+                      height: 100,
+                    ),
+                    const SizedBox(height: 16),
+                    Text("تسجيل الدخول", style: AppStyles.style20Bold),
+                    const SizedBox(height: 8),
+                    Text(
+                      "قم بتسجيل الدخول إلى حسابك",
+                      style: AppStyles.style12Regular.copyWith(
+                        color: AppColors.textHighContrast,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    CustomTextFormFieldWithLabel(authModel: loginFields[0]),
+                    const SizedBox(height: 16),
+                    CustomTextFormFieldWithLabel(authModel: loginFields[1]),
+                    const SizedBox(height: 16),
+                    const LoginOptionsRow(),
+                  ],
                 ),
               ),
-              const SizedBox(height: 32),
-              CustomTextFormFieldWithLabel(authModel: loginFields[0]),
-              const SizedBox(height: 24),
-              CustomTextFormFieldWithLabel(authModel: loginFields[1]),
+
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    CustomButton(),
+                    SizedBox(height: 16),
+                    AuthNavigationText(),
+                    SizedBox(height: 88),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

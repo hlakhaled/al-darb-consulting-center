@@ -14,6 +14,21 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
+  static final TextStyle style14Regular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textTertiary,
+  );
+  static final TextStyle style14Bold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+  );
+  static final TextStyle style16Bold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.backgroundSurface,
+  );
 
   static final TextStyle style20SemiBold = TextStyle(
     fontSize: 20.sp,

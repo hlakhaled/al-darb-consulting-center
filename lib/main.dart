@@ -1,7 +1,9 @@
+import 'package:al_darb_consulting_center/core/routes/app_router.dart';
 import 'package:al_darb_consulting_center/features/auth/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      child: MaterialApp(
+      child: MaterialApp.router(
         locale: const Locale('ar'),
 
         supportedLocales: const [Locale('ar'), Locale('en')],
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         ],
         theme: ThemeData(fontFamily: 'Cairo'),
         debugShowCheckedModeBanner: false,
-        home: const LoginView(),
+        routerConfig: AppRouter().goRouter,
       ),
     );
   }
