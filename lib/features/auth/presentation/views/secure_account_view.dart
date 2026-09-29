@@ -8,14 +8,14 @@ import 'package:al_darb_consulting_center/features/auth/presentation/views/widge
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/profile_image_picker.dart';
 import 'package:flutter/material.dart';
 
-class SignupView extends StatefulWidget {
-  const SignupView({super.key});
+class SecureAccountView extends StatefulWidget {
+  const SecureAccountView({super.key});
 
   @override
-  State<SignupView> createState() => _SignupViewState();
+  State<SecureAccountView> createState() => _SecureAccountViewState();
 }
 
-class _SignupViewState extends State<SignupView> {
+class _SecureAccountViewState extends State<SecureAccountView> {
   final List<AuthModel> loginFields = const [
     AuthModel(title: "الاسم الكامل", isPassword: false),
     AuthModel(title: "رقم الهاتف", isPassword: false),
@@ -56,7 +56,7 @@ class _SignupViewState extends State<SignupView> {
                     const SizedBox(height: 48),
                     const ProfileImagePicker(),
                     const SizedBox(height: 16),
-                    Text("إنشاء حساب جديد", style: AppStyles.style20Bold),
+                    Text("تأمين الحساب", style: AppStyles.style20Bold),
                     const SizedBox(height: 8),
                     Text(
                       "أدخل بياناتك لإنشاء حسابك",
