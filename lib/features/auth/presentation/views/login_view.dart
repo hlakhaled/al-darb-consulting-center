@@ -8,12 +8,35 @@ import 'package:al_darb_consulting_center/features/auth/presentation/views/widge
 import 'package:al_darb_consulting_center/features/auth/presentation/views/widgets/login_options_row.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   final List<AuthModel> loginFields = const [
     AuthModel(title: "البريد الإلكتروني", isPassword: false),
     AuthModel(title: "كلمة المرور", isPassword: true),
   ];
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  final formKey = GlobalKey<FormState>();
+  @override
+  initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +64,24 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    CustomTextFormFieldWithLabel(authModel: loginFields[0]),
-                    const SizedBox(height: 16),
-                    CustomTextFormFieldWithLabel(authModel: loginFields[1]),
-                    const SizedBox(height: 16),
-                    const LoginOptionsRow(),
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          CustomTextFormFieldWithLabel(
+                            authModel: loginFields[0],
+                            controller: emailController,
+                          ),
+                          const SizedBox(height: 16),
+                          CustomTextFormFieldWithLabel(
+                            authModel: loginFields[1],
+                            controller: passwordController,
+                          ),
+                          const SizedBox(height: 16),
+                          const LoginOptionsRow(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -54,11 +90,17 @@ class LoginView extends StatelessWidget {
                 hasScrollBody: false,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    CustomButton(),
-                    SizedBox(height: 16),
-                    AuthNavigationText(),
-                    SizedBox(height: 88),
+                  children: [
+                    CustomButton(
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          // Perform login action
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    const AuthNavigationText(),
+                    const SizedBox(height: 88),
                   ],
                 ),
               ),
